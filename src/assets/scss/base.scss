@@ -1,0 +1,36 @@
+@import '../../../node_modules/bootstrap/scss/_functions.scss';
+@import '../../../node_modules/bootstrap/scss/_variables.scss';
+@import '../../../node_modules/bootstrap/scss/_mixins.scss';
+@import '../../../node_modules/bootstrap/scss/_forms.scss';
+@import '../../../node_modules/bootstrap/scss/_buttons.scss';
+@import '../../../node_modules/bootstrap/scss/bootstrap-grid.scss';
+
+html, body {
+ 	height: 100%;
+ 	padding: 0;
+ 	margin: 0;
+}
+
+main {
+	height: 100%;
+}
+
+.wrap {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -60px;
+}
+
+.push, .footer {
+	height: 60px;
+}
+
+.footer {
+	background-color: #f5f5f5;
+	padding-top: 10px;
+}
+
+h1.welcome {
+	margin-top: 0;
+}
