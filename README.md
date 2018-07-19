@@ -1,4 +1,4 @@
-# reunion_vue
+# Reunion-Vue 0.0.1
 
 > A Vue.js project
 
