@@ -6,7 +6,7 @@ export const routes = [
     {
         path: '/',
         name: 'index',
-        component: Index
+        components: Index
     },
     {
         path: '/login',

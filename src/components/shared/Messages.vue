@@ -1,7 +1,5 @@
 <template>
-  <ul class="messages">
-	  
-  </ul>
+
 </template>
 
 <script>

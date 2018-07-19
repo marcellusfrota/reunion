@@ -19,8 +19,6 @@ const router = new VueRouter({
  */
 import './assets/scss/base.scss';
 
-
-
 new Vue({
   el: '#app',
   router,
