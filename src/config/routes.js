@@ -1,12 +1,13 @@
 import Index from '../components/Index';
 import Login from '../components/Login';
+import Logout from '../components/Logout';
 import Register from '../components/Register';
 
 export const routes = [
     {
         path: '/',
         name: 'index',
-        components: Index
+        component: Index
     },
     {
         path: '/login',
@@ -17,6 +18,11 @@ export const routes = [
         path: '/register',
         name: 'register',
         component: Register
+    },
+    {
+        path: '/logout',
+        name: 'logout',
+        component: Logout
     },
     {
         path: '*',
