@@ -2,7 +2,7 @@
 	<ul class="messages-list">
 		<message-item
       v-for="message in messages"
-      v-bind:message="message"
+      v-bind:message="message.text"
       v-bind:key="message.id">
     </message-item>
 	</ul>
@@ -16,33 +16,45 @@ export default {
   name: 'Messages',
   data () {
   	return {
-	    welcome: 'Seja bem vindo ao Reunion',
+	    welcome: '',
 	    messages: [
-	    	{ id: 1, text: 'Teste de mensagem' }
-	    ],
-	    error: null
+        {text: 'wow'}
+      ],
+	    error: [],
+      isShowing: true
 	  }
   },
   watch: {
-    messages() {
-      console.log('Chegou mensagem!')
+    welcome: function() {
+      console.info('[Reunion]: Welcome foi alterado para: ' + this.welcome);
+    },
+    messages: function() {
+      console.info('[Reunion]: Mensagem recebida.');
     }
   },
   created: function() { 
-    this.messages.push({id: 2, text: 'Deu certo'});
+    this.welcome = 'Seja bem vindo ao Reunion';
+    this.messages.push({id: 1, text: this.welcome});
   },
   computed: { },
   methods: {
     addMessage(m) {
-      // this.messages.push({id: 2, text: m});
-      console.log(this.welcome)
+      this.messages.push({text: m});
+      // console.log(this);
+      this.isShowing = !this.isShowing;
+      this.welcome = 'aaa';
     }
   }
 }
 
 Vue.component('message-item', {
-  props: ['message'],
-  template: '<li>{{ message.text }}</li>'
+  props: {
+    message: {
+      type: String,
+      required: true
+    }
+  },
+  template: '<li>{{ message }}</li>'
 })
 
 </script>

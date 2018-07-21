@@ -1,7 +1,7 @@
-import Index from '../components/Index';
-import Login from '../components/Login';
-import Logout from '../components/Logout';
-import Register from '../components/Register';
+import Index from '../components/pages/Index';
+import Login from '../components/pages/Login';
+import Logout from '../components/pages/Logout';
+import Register from '../components/pages/Register';
 
 export const routes = [
     {

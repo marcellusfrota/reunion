@@ -1,31 +1,28 @@
 <template>
-	<input-text />
+	<input-text 
+		@keydown.enter="loga"
+		id="message" 
+		placeholder="Digite sua mensagem..." />
 </template>
 
 <script>
 
 import Vue from 'vue'
+import Message from './Messages.vue'
 
 export default {
   name: 'MessageInput',
   data () { return { } },
-  created: function() {
-
-  }
+  created: function() { }
 }
 
 Vue.component('input-text', {
-  data: function () { return { } },
-  created: function() {
-		// document.getElementById('message').addEventListener('keypress', function(e) {
-		// 	if (e.keyCode == '13') {
-		// 		console.log('Enviar mensagem');
-		// 	}
-		// });
-  },
-  template: '<b-form-input type="text" placeholder="Escreva sua mensagem..." id="message"></b-form-input>',
-  methods: {
-
+  props: ['id', 'placeholder'],
+  template: '<b-form-input v-on:keypress.enter="" type="text" :placeholder="placeholder" :id="id"></b-form-input>',
+  methods: { 
+  	loga: function() {
+  		console.log('Deu enter');
+  	}
   }
 })	
 

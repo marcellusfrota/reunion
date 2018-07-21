@@ -1,35 +1,40 @@
+/**
+ * Vue
+ */
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-import BootstrapVue from 'bootstrap-vue'
-// import { Layout } from 'bootstrap-vue/es/components';
-import App from './App.vue'
 
 /**
- * Routes modules
+ * Define routes
  */
-import { routes } from './config/routes';
-
-Vue.use(VueRouter);
-
-const router = new VueRouter({
-  routes,
-  saveScrollPosition: true,
-  mode: 'history'
-});
+import routes from './routes'
 
 /**
  * Bootstrap
  */
+import BootstrapVue from 'bootstrap-vue'
 Vue.use(BootstrapVue);
-// Vue.use(Layout);
 
 /**
- * Base assets
+ * Init Reunion
  */
-import './assets/scss/base.scss';
-
-new Vue({
+const app = new Vue({
   el: '#app',
-  router,
-  render: h => h(App),
-});
+  data: {
+    currentRoute: window.location.pathname
+  },
+  computed: {
+    ViewComponent () {
+      const matchingView = routes[this.currentRoute]
+      return (matchingView)
+        ? require('./pages/' + matchingView + '.vue')
+        : require('./pages/404.vue')
+    }
+  },
+  render (h) {
+    return h(this.ViewComponent.default)
+  }
+})
+
+window.addEventListener('popstate', () => {
+  app.currentRoute = window.location.pathname
+})

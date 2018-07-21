@@ -1,10 +1,13 @@
 <template>
-  <b-list-group>
-	  <b-list-group-item href="#">Pedro Silva</b-list-group-item>
-	  <b-list-group-item href="#" active>Italo Russan</b-list-group-item>
-	  <b-list-group-item href="#">José Hudson</b-list-group-item>
-	  <b-list-group-item href="#" disabled>Marcellus Frota</b-list-group-item>
-	</b-list-group>
+	<b-card no-body header="<b>Participantes</b>">
+		<b-list-group>
+			<b-list-group-item 
+				v-for="user in users" 
+				v-bind:key="user.id">
+				{{ user.name }}
+			</b-list-group-item>
+		</b-list-group>
+	</b-card>
 </template>
 
 <script>
@@ -15,14 +18,20 @@ export default {
   name: 'UsersList',
   data () {
   	return {
-	    users: [],
+	    users: [
+	    	{ id: 1, name: 'Pedro Silva' },
+	    	{ id: 2, name: 'Italo Russan' },
+	    	{ id: 3, name: 'José Hudson' },
+	    	{ id: 4, name: 'Marcellus Frota' },
+	    ],
 	    error: null
   	}
   }
 }
 
 Vue.component('users-list', {
-  template: '<li class="user"></li>'
+	props: ['u'],
+  template: '<b-list-group-item>{{ u.name }}</b-list-group-item>'
 })
 
 </script>

@@ -11,6 +11,10 @@ html, body {
  	margin: 0;
 }
 
+* {
+	outline: none !important;
+}
+
 body {
 	overflow: hidden;
 }
@@ -26,6 +30,7 @@ main {
 
 .users-list {
 	background: #efefef;
+	padding-top: 15px;
 }
 
 .footer {
