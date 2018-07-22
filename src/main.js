@@ -17,6 +17,12 @@ import BootstrapVue from 'bootstrap-vue'
 Vue.use(BootstrapVue);
 
 /**
+ * VueSocketio
+ */
+// import VueSocketio from 'vue-socket.io';
+// Vue.use(VueSocketio, 'http://localhost:3000');
+
+/**
  * Init Reunion
  */
 const app = new Vue({

@@ -39,7 +39,7 @@ import MessageInput from './_shared/MessageInput.vue'
 import UsersList from './UsersList.vue'
 
 export default {
-  name: 'app',
+  name: 'Messages',
   data () {
   	return {
 	    welcome: '',
@@ -82,7 +82,7 @@ var MessageItem = Vue.extend({
       required: true
     }
   },
-  template: '<li>{{ message }}</li>',
+  template: '<transition name="fade"><li>{{ message }}</li></transition>',
 })
 
 Vue.component('message-item', MessageItem);
