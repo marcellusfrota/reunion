@@ -11,11 +11,13 @@
     "build-final": "NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "bootstrap": "^4.1.2",
     "bootstrap-vue": "^2.0.0-rc.11",
     "extract-text-webpack-plugin": "^3.0.2",
-    "npm": "^6.2.0",
+    "jquery": "^3.3.1",
     "vue": "^2.5.11",
+    "vue-axios": "^2.1.2",
     "vue-router": "^3.0.1"
   },
   "browser": {

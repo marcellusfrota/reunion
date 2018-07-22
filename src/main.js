@@ -1,3 +1,5 @@
+// main.js
+
 /**
  * Vue
  */
@@ -24,7 +26,7 @@ const app = new Vue({
   },
   computed: {
     ViewComponent () {
-      const matchingView = routes[this.currentRoute]
+      let matchingView = routes[this.currentRoute]
       return (matchingView)
         ? require('./pages/' + matchingView + '.vue')
         : require('./pages/404.vue')
@@ -35,6 +37,9 @@ const app = new Vue({
   }
 })
 
+/**
+ * Listener when page's change
+ */
 window.addEventListener('popstate', () => {
   app.currentRoute = window.location.pathname
 })
