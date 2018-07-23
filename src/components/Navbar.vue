@@ -39,7 +39,7 @@ export default {
   },
   watch: {
   	VoiceToggle: function() {
-  		// this.$emit('')
+  		// this.$emit('voiceSupport');
   		this.toggleVoice()
   	}
   },

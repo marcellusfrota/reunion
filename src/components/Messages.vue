@@ -208,6 +208,7 @@ var InputText = Vue.extend({
       // this.recognition.grammars = this.recognitionList;
       this.recognition.lang = this.lang
       this.recognition.interimResults = true
+      // this.recognition.continuous = true;
       this.recognition.addEventListener('result', event => {
         const text = Array.from(event.results)
           .map(result => result[0])
