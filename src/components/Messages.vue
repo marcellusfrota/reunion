@@ -53,6 +53,8 @@ export default {
       voiceSupport: false,
       voiceMessage: '',
       voiceMessageTimer: false,
+      voiceMessageTimeout: 4000,
+      voiceTimer: null,
 	    error: [],
       isShowing: true
 	  }
@@ -87,12 +89,15 @@ export default {
     },
     addVoiceMessage(voiceMessage) {
       let _this = this
-      document.getElementById('message').value += voiceMessage.lastSentence
+      if (this.voiceTimer)
+        clearTimeout(this.voiceTimer)      
+      let message = document.getElementById('message')
+      message.value += voiceMessage.lastSentence + ' '
       this.voiceMessageTimer = true
-      setTimeout(function() {
+      this.voiceTimer = setTimeout(function() {
         if (_this.voiceMessageTimer)
           _this.addMessage()
-      }, 4000)
+      }, _this.voiceMessageTimeout)
       // console.log(event, voiceMessage)
     },
     stopVoiceTimer() {
