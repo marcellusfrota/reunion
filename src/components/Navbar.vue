@@ -5,14 +5,16 @@
 	  <b-collapse is-nav id="nav_collapse">
 	    <b-navbar-nav>
 	      <b-nav-item href="#">Convidar participante</b-nav-item>
-	      <b-button 
-	      	:pressed.sync="VoiceToggle" 
-	      	size="sm" 
-	      	class="btn-chat"
-	      	type="button">Voz {{ VoiceToggle ? 'habilitada' : 'desabilitada' }}</b-button>
+	      
 	    </b-navbar-nav>
 	    <!-- Right aligned nav items -->
 	    <b-navbar-nav class="ml-auto">
+	    	<b-button 
+	      	:pressed.sync="VoiceToggle" 
+	      	size="sm" 
+	      	v-if="VoiceCheck"
+	      	class="btn-chat"
+	      	type="button">Voz {{ VoiceToggle ? 'habilitada' : 'desabilitada' }}</b-button>
 	      <b-nav-item-dropdown right>
 	        <!-- Using button-content slot -->
 	        <template slot="button-content">
@@ -31,7 +33,8 @@
 export default {
   data () {
     return {
-      VoiceToggle: false
+      VoiceToggle: false,
+      VoiceCheck: false
     }
   },
   watch: {
@@ -39,6 +42,10 @@ export default {
   		// this.$emit('')
   		this.toggleVoice()
   	}
+  },
+  mounted: function() {
+  	window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+  	this.VoiceCheck = window.SpeechRecognition
   },
   methods: {
   	toggleVoice() {

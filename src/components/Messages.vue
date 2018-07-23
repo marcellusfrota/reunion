@@ -4,10 +4,10 @@
       <b-col md="8">
         <b-tabs class="mt-2 h-100">
           <b-tab title="Sala 1" active>
-            <b-nav-form class="mt-2">
+            <!-- <b-nav-form class="mt-2">
               <b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Pesquisar assunto..."/>
               <b-button size="sm" class="my-2 my-sm-0" type="button">Procurar</b-button>
-            </b-nav-form>
+            </b-nav-form> -->
             <ul class="messages-list" id="messages-list">
               <message-item
                 v-for="message in messages"
@@ -62,10 +62,9 @@ export default {
   },
   watch: {
     welcome: function() {
-      console.info('[Reunion]: Welcome foi alterado para: ' + this.welcome);
+      console.info('[Reunion] ' + this.welcome);
     },
     messages: function() {
-      console.info('[Reunion]: Mensagem recebida.');
       this.scrollToBottom()
     },
     voiceSupport: function() {
@@ -86,9 +85,9 @@ export default {
       document.getElementById('message').value = '';
       document.getElementById('message').focus();
     },
-    addVoiceMessage(event, voiceMessage) {
+    addVoiceMessage(voiceMessage) {
       let _this = this
-      document.getElementById('message').value += event
+      document.getElementById('message').value += voiceMessage.lastSentence
       this.voiceMessageTimer = true
       setTimeout(function() {
         if (_this.voiceMessageTimer)
@@ -172,10 +171,10 @@ var InputText = Vue.extend({
       if (this.recognition) {
         this.recognition.abort()
         this.recognition.stop()
-        console.log('Voz desabilitada')
+        console.log('[Reunion] Voz desabilitada')
       } else {
         this.checkApi()
-        console.log('Voz habilitada')
+        console.log('[Reunion] Voz habilitada')
       }
     }
   },
@@ -208,14 +207,15 @@ var InputText = Vue.extend({
           .join('')
         this.runtimeTranscription = text
       })
+      // When capture all words
       this.recognition.addEventListener('end', () => {
         if (this.runtimeTranscription !== '') {
           this.transcription.push(this.runtimeTranscription)
-          this.$emit('doVoice', this.runtimeTranscription)
-          // this.$emit('doVoice', {
-          //   transcription: this.transcription,
-          //   lastSentence: this.runtimeTranscription
-          // })
+          // this.$emit('doVoice', this.runtimeTranscription)
+          this.$emit('doVoice', {
+            transcription: this.transcription,
+            lastSentence: this.runtimeTranscription
+          })
         }
         this.runtimeTranscription = ''
         this.recognition.start()

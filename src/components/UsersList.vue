@@ -40,7 +40,7 @@ Vue.component('users-list', {
 
 .users-list .list-group {
 	overflow: auto;
-  max-height: 180px;
+  max-height: 196px;
 }
 .users-list {
 	background: #efefef;
