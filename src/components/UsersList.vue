@@ -1,5 +1,5 @@
 <template>
-	<b-card no-body header="<b>Participantes</b>">
+	<b-card class="users-list mt-3" no-body header="<b>Participantes</b>">
 		<b-list-group>
 			<b-list-group-item 
 				v-for="user in users" 
@@ -36,6 +36,13 @@ Vue.component('users-list', {
 
 </script>
 
-<style scoped>
+<style>
 
+.users-list .list-group {
+	overflow: auto;
+  max-height: 180px;
+}
+.users-list {
+	background: #efefef;
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
   <main-layout>
     <b-container fluid class="h-100">
-      <Navbar />
+      <Navbar v-on:voiceSupport="toggleVoiceSupport"/>
       <Messages />
     </b-container>
   </main-layout>
@@ -38,10 +38,15 @@ export default {
     }
   },
   created: function () {
-    
+        
   },
   methods: {
-
+    toggleVoiceSupport() {
+      this.$children[0].$children[1].voiceSupport = !this.$children[0].$children[1].voiceSupport
+    }
+  },
+  mounted: function() { 
+    
   },
   components: {
     MainLayout, // First component

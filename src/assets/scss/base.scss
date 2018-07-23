@@ -16,7 +16,8 @@ html, body {
 }
 
 body {
-	overflow: hidden;
+	// overflow: hidden;
+	height: calc(100% - 114px);
 }
 
 main {
@@ -24,17 +25,28 @@ main {
 }
 
 .top {
-	height: calc(100% - 114px);
+	height: calc(100%);
+	// height: calc(100%);
 	margin-top: 56px;
-}
-
-.users-list {
-	background: #efefef;
-	padding-top: 15px;
 }
 
 .footer {
 	background-color: #f5f5f5;
 	padding: 10px;
+}
+
+.btn-chat {
+
+}
+
+.btn-chat.active {
+	background-color: #005500 !important;
+    border-color: #004400 !important;
+}
+
+.messages-list {
+	height: 100%;
+	overflow: auto;
+	max-height: 300px;
 }
 

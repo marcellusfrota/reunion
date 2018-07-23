@@ -5,14 +5,14 @@
 	  <b-collapse is-nav id="nav_collapse">
 	    <b-navbar-nav>
 	      <b-nav-item href="#">Convidar participante</b-nav-item>
-	      <b-button size="sm" variant="" class="my-2 my-sm-0" type="button">Encerrar reunião</b-button>
+	      <b-button 
+	      	:pressed.sync="VoiceToggle" 
+	      	size="sm" 
+	      	class="btn-chat"
+	      	type="button">Voz {{ VoiceToggle ? 'habilitada' : 'desabilitada' }}</b-button>
 	    </b-navbar-nav>
 	    <!-- Right aligned nav items -->
 	    <b-navbar-nav class="ml-auto">
-	      <b-nav-form>
-	        <b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Pesquisar assunto..."/>
-	        <b-button size="sm" class="my-2 my-sm-0" type="button">Procurar</b-button>
-	      </b-nav-form>
 	      <b-nav-item-dropdown right>
 	        <!-- Using button-content slot -->
 	        <template slot="button-content">
@@ -26,3 +26,24 @@
 	  </b-collapse>
 	</b-navbar>
 </template>
+
+<script>
+export default {
+  data () {
+    return {
+      VoiceToggle: false
+    }
+  },
+  watch: {
+  	VoiceToggle: function() {
+  		// this.$emit('')
+  		this.toggleVoice()
+  	}
+  },
+  methods: {
+  	toggleVoice() {
+  		this.$emit('voiceSupport');
+  	}
+  }
+}
+</script>

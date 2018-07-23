@@ -28,7 +28,9 @@ Vue.use(BootstrapVue);
 const app = new Vue({
   el: '#app',
   data: {
-    currentRoute: window.location.pathname
+    currentRoute: window.location.pathname,
+    hashKey: 'maytheforcebewithyou'
+
   },
   computed: {
     ViewComponent () {
