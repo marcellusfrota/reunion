@@ -29,7 +29,8 @@
             v-on:keyup.native.enter="addMessage"
             v-on:keydown.native="stopVoiceTimer"
             v-on:doSendMessage="addMessage" 
-            v-on:doVoice="addVoiceMessage($event, voiceMessage)" />
+            v-on:doVoice="addVoiceMessage($event, voiceMessage)" 
+            v-on:stopVoiceTimer="stopVoiceTimer"/>
         </form>
       </b-col>
       <b-col md="3">
@@ -90,7 +91,7 @@ export default {
     addVoiceMessage(voiceMessage) {
       let _this = this
       if (this.voiceTimer)
-        clearTimeout(this.voiceTimer)      
+        clearTimeout(this.voiceTimer)
       let message = document.getElementById('message')
       message.value += voiceMessage.lastSentence + ' '
       this.voiceMessageTimer = true
@@ -150,7 +151,8 @@ var InputText = Vue.extend({
       runtimeTranscription: '',
       transcription: [],
       voiceSupport: false,
-      recognition: false
+      recognition: null,
+      recognitionList: null
     } 
   },
   props: {
@@ -189,9 +191,6 @@ var InputText = Vue.extend({
     },
     checkApi () {
       window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
-      if (!SpeechRecognition && process.env.NODE_ENV !== 'production') {
-        // throw new Error('Speech Recognition does not exist on this browser. Use Chrome or Firefox')
-      }
       if (!SpeechRecognition) {
         console.error('[Reunion] Seu navegador não tem suporte para voz.')
         return
@@ -203,6 +202,10 @@ var InputText = Vue.extend({
         return
       }
       this.recognition = new SpeechRecognition()
+      // var grammar = '#JSGF V1.0; grammar colors; public <color> = aqua | azure | beige | bisque | black | blue | brown | chocolate | coral | crimson | cyan | fuchsia | ghostwhite | gold | goldenrod | gray | green | indigo | ivory | khaki | lavender | lime | linen | magenta | maroon | moccasin | navy | olive | orange | orchid | peru | pink | plum | purple | red | salmon | sienna | silver | snow | tan | teal | thistle | tomato | turquoise | violet | white | yellow ;'
+      // this.recognitionList = new SpeechGrammarList()
+      // this.recognitionList.addFromString(grammar, 1);
+      // this.recognition.grammars = this.recognitionList;
       this.recognition.lang = this.lang
       this.recognition.interimResults = true
       this.recognition.addEventListener('result', event => {
@@ -211,6 +214,7 @@ var InputText = Vue.extend({
           .map(result => result.transcript)
           .join('')
         this.runtimeTranscription = text
+        this.$emit('stopVoiceTimer')
       })
       // When capture all words
       this.recognition.addEventListener('end', () => {

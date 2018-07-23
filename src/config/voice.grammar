@@ -1,0 +1,13 @@
+#ABNF 1.0 UTF-8;
+
+language pt-BR;
+mode voice;
+tag-format <semantics/1.0>;
+
+root $IsQuestion;
+
+public $IsQuestion = $WHWords [$GARBAGE] $AuxVerbs [$GARBAGE] {out="yes"};
+
+public $AuxVerbs= (am|is|are|was|were);
+
+public $WHWords=(what|which|where); 
